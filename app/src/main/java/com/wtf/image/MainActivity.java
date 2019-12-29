@@ -2,20 +2,12 @@ package com.wtf.image;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,8 +28,14 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DownloadImageTask(view).execute(editText.getText().toString());            }
+                //Объект, при создании связывающий ImageView и вызывающий родительский метод execute
+                //с параметром - строкой из editText
+                //new DownloadImageTask(view).execute(editText.getText().toString());
+                DownloadImageTask downloadImageTask = new DownloadImageTask(view);
+                downloadImageTask.execute(editText.getText().toString());
+            }
         });
 
     }
 }
+
